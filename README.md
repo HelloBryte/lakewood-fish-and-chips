@@ -37,12 +37,18 @@ because the menu is inlined into `assets/js/menu-data.js` rather than fetched.
 
 ## Editing the menu
 
-`data/menu.json` is the single source of truth. After changing it, regenerate the file
-the browser actually reads:
+`data/menu.json` is the single source of truth. After changing it, check it for mistakes
+and regenerate the file the browser actually reads:
 
 ```bash
-node build-menu.js
+node validate-menu.js   # catches duplicate ids, bad prices, bulk deals that
+                         # aren't actually cheaper, malformed trading hours, etc.
+node build-menu.js      # regenerates assets/js/menu-data.js
 ```
+
+`build-menu.js` doesn't call the validator itself, so it's worth running
+`validate-menu.js` first — it exits non-zero and lists every problem it finds if
+something's wrong with the JSON.
 
 Keys prefixed with `_` in `menu.json` are notes for the shop owner and are stripped out
 of the generated file.
@@ -53,6 +59,7 @@ of the generated file.
 index.html              home — hero, value packs, hours, location
 order.html              full menu, cart, checkout
 data/menu.json          menu source of truth (edit this)
+validate-menu.js        checks data/menu.json for mistakes
 build-menu.js           regenerates assets/js/menu-data.js
 assets/js/shop.js       trading hours, open/closed, pickup slots, formatting
 assets/js/cart.js       cart state, bulk deals, totals
