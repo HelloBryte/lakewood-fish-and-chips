@@ -83,3 +83,7 @@ See [docs/CLIENT-BRIEF.md](docs/CLIENT-BRIEF.md) for the full list. The short ve
 - Hero and footer copy is descriptive filler — no claims about the business are invented,
   but it should be replaced with the owner's own words
 - Pages are `noindex, nofollow` while this is a demo. Remove that before any real launch.
+
+## License
+
+[MIT](LICENSE) — this is a portfolio/demo project, not the shop's real ordering system.
