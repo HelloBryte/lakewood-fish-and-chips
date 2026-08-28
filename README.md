@@ -47,6 +47,22 @@ node build-menu.js
 Keys prefixed with `_` in `menu.json` are notes for the shop owner and are stripped out
 of the generated file.
 
+## Tests
+
+The pricing, hours, and formatting logic in `assets/js/shop.js` and `assets/js/cart.js`
+has a unit test suite using Node's built-in test runner — no dependencies to install:
+
+```bash
+npm test
+# or: node --test test/*.test.js
+```
+
+It covers bulk-deal pricing (cheaper of plain vs. bundle, including partial bundles),
+option deltas, cart persistence, and the open/closed + pickup-slot logic across a fixed,
+deterministic clock (so it doesn't depend on when you happen to run it). It does not
+cover rendering (`app.js`, `order.js`) or the checkout flow, which are DOM-driven and
+would need a browser or a DOM shim to test meaningfully.
+
 ## Layout
 
 ```
@@ -59,6 +75,7 @@ assets/js/cart.js       cart state, bulk deals, totals
 assets/js/app.js        shared page wiring
 assets/js/order.js      menu render, options modal, checkout
 assets/css/style.css    all styling
+test/                   unit tests for shop.js and cart.js (node --test)
 docs/CLIENT-BRIEF.md    what the shop still needs to supply
 ```
 
